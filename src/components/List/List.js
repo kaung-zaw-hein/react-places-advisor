@@ -5,16 +5,18 @@ import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles.js';
 
 
-function List() {
+function List({ places, type, setType, rating, setRating, childClicked, isLoading }) {
+  const [elRefs, setElRefs] = useState([]);
   const classes = useStyles();
-  const {type, setType} = useState('restaurants');
-  const {rating, setRating} = useState('Rating');
-  const places = ['afds','fdasf','fdsaf'];
+
+  useEffect(() => {
+    setElRefs((refs) => Array(places.length).fill().map((_, i) => refs[i] || createRef()));
+  }, [places]);
 
   return (
     <div className={classes.container}>
     <Typography variant="h4">Food & Dining around you</Typography>
-    {false ? (
+    {isLoading ? (
       <div className={classes.loading}>
         <CircularProgress size="5rem" />
       </div>
@@ -39,15 +41,15 @@ function List() {
         </FormControl>
         <Grid container spacing={3} className={classes.list}>
           {places?.map((place, i) => (
-            <Grid key={i} item xs={12}>
-              <PlaceDetails place={place}/>
+            <Grid ref={elRefs[i]} key={i} item xs={12}>
+              <PlaceDetails selected={Number(childClicked) === i} refProp={elRefs[i]} place={place} />
             </Grid>
           ))}
         </Grid>
       </>
     )}
   </div>
-  )
-}
+);
+};
 
-export default List
+export default List;

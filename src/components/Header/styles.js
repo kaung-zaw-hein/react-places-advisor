@@ -1,6 +1,9 @@
 import { alpha, makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
+  appbar: {
+    background: 'black',
+  },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
@@ -28,5 +31,8 @@ export default makeStyles((theme) => ({
   },
   toolbar: {
     display: 'flex', justifyContent: 'space-between',
+  },
+  logo : {
+    width: '100px'
   },
 }));
