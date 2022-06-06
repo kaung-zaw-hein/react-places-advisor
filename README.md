@@ -1,4 +1,4 @@
-# Travel Advisor
+# Place Advisor
 
 ![image](https://user-images.githubusercontent.com/62888962/172117321-1fde9446-d8dc-4521-8eb2-5667c4948bd4.png)
 
